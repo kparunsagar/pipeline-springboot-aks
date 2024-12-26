@@ -13,7 +13,7 @@ pipeline {
         stages {
             stage('Source') {
                 steps {
-                    git url: 'https://github.com/kparunsagar/pipeline_springboot.git', branch: 'master'
+                    git url: 'https://github.com/kparunsagar/pipeline_springboot.git'
                 }
             }
             stage('Build') {
