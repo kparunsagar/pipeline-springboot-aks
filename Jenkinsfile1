@@ -21,7 +21,7 @@ pipeline {
                     script {
                         def mvnHome = tool 'maven'
                         withSonarQubeEnv() {
-                            bat "${mvnHome}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=demo_pipe_sonar"
+                            bat "${mvnHome}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=MyAwesomeApp"
                         }
                     }
                 }
@@ -40,7 +40,7 @@ pipeline {
                             def server = Artifactory.server 'artifactory'
                             def rtMaven = Artifactory.newMavenBuild()
                             //rtMaven.resolver server: server, releaseRepo: 'jenkins-devops', snapshotRepo: 'jenkins-devops-snapshot'
-                            rtMaven.deployer server: server, releaseRepo: 'demo_pipe_repo', snapshotRepo: 'demo_pipe_snap'
+                            rtMaven.deployer server: server, releaseRepo: 'myproject-Release', snapshotRepo: 'myproject-Snapshot'
                             rtMaven.tool = 'maven'
                             
                             def buildInfo = rtMaven.run pom: '$workspace/pom.xml', goals: 'clean install'
